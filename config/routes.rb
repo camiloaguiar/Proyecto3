@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   namespace :api do
   	namespace :v1 do
   		resources :users, only: [:index]
+  		devise_scope :user do
+  			match '/sessions' => 'sessions#create', via: :post
+  			match '/sessions' => 'sessions#destroy', via: :delete
+  		end
   	end
   end	
   
